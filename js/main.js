@@ -23,6 +23,7 @@ class App extends React.Component {
             min: min,
             max: max
         })
+        this.getNewValues(min, max)
     }
 
     getRandomInt(min, max) {
@@ -33,11 +34,15 @@ class App extends React.Component {
         this.setState({answer: newAnswer});
     }
 
+    getNewValues(min, max) {
+        this.setState({input1: this.getRandomInt(min, max),
+               input2: this.getRandomInt(min, max)})
+    }
+
     handleAnswerSubmit(e) {
         e.preventDefault();
         if (this.state.answer == this.state.input1 * this.state.input2) {
-            this.setState({input1: this.getRandomInt(this.state.min, this.state.max),
-                           input2: this.getRandomInt(this.state.min, this.state.max)})
+            this.getNewValues(this.state.min, this.state.max);
         }
     }
 
