@@ -77,17 +77,20 @@ class GuessForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentAnswer: 0
+            currentAnswer: ''
         }
     }
 
     handleAnswer(e) {
         this.props.onSubmit(e);
-        this.setState({currentAnswer: 0});
+        this.setState({currentAnswer: ''});
     }
 
     handleAnswerChange(e) {
-        var newAnswer = parseInt(e.target.value) || 0;
+        var newAnswer = parseInt(e.target.value);
+        if (newAnswer != 0 && !newAnswer) {
+            newAnswer = '';
+        }
         this.props.onChange(newAnswer);
         this.setState({currentAnswer: newAnswer});
     }
