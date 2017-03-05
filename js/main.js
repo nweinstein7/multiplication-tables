@@ -18,20 +18,6 @@ class App extends React.Component {
         }
     }
 
-    setMax(e) {
-        var newMax = parseInt(e.target.value);
-        if (newMax > this.state.min && newMax < 100) {
-            this.setState({max: newMax});
-        }
-    }
-
-    setMin(e) {
-        var newMin = parseInt(e.target.value);
-        if (newMin < this.state.max && newMin > 0) {
-            this.setState({min: newMin});
-        }
-    }
-
     handleMaxMinChange(min, max) {
         this.setState({
             min: min,
@@ -92,11 +78,11 @@ class GuessForm extends React.Component {
 
     handleAnswer(e) {
         this.props.onSubmit(e);
-        this.setState({currentAnswer: ''});
+        this.setState({currentAnswer: 0});
     }
 
     handleAnswerChange(e) {
-        var newAnswer = parseInt(e.target.value);
+        var newAnswer = parseInt(e.target.value) || 0;
         this.props.onChange(newAnswer);
         this.setState({currentAnswer: newAnswer});
     }
@@ -196,7 +182,6 @@ class MinMaxPicker extends React.Component {
                     Edit
                 </Button>
             </div>
-
             )
 
     }
